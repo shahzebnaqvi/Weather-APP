@@ -37,11 +37,11 @@ class _WeatherState extends State<Weather> {
                   decoration: new BoxDecoration(
                     color: Colors.blue[400],
                     // color: Colors.blueGrey[200],
-                    // image: DecorationImage(
-                    //     fit: BoxFit.cover,
-                    //     colorFilter: new ColorFilter.mode(
-                    //         Colors.black.withOpacity(0.4), BlendMode.dstATop),
-                    //     image: AssetImage("assets/images/electric.gif")),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        colorFilter: new ColorFilter.mode(
+                            Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                        image: AssetImage("assets/images/electric.gif")),
                   ),
                   child: Column(
                     children: [
@@ -69,7 +69,10 @@ class _WeatherState extends State<Weather> {
                                 });
                                 txtcity.clear();
                               },
-                              child: Icon(Icons.search)),
+                              child: Icon(
+                                Icons.search,
+                                color: fontcolor,
+                              )),
                           InkWell(
                             onTap: () {
                               setState(() {
@@ -80,7 +83,7 @@ class _WeatherState extends State<Weather> {
                               txtcity.clear();
                               print(favourite);
                             },
-                            child: Icon(Icons.add),
+                            child: Icon(Icons.add, color: fontcolor),
                           )
                         ],
                       ),
