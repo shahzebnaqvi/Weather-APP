@@ -19,7 +19,8 @@ getuser(String city) async {
       title: jsonData['main']['humidity'],
       temp: jsonData['main']['temp'],
       timezone: jsonData['timezone'],
-      name: jsonData['name']);
+      name: jsonData['name'],
+      weather: jsonData['weather'][0]['main']);
   users.add(user);
 
   return users;

@@ -94,21 +94,21 @@ class _WeatherState extends State<Weather> {
                         height: MediaQuery.of(context).size.height * 0.04,
                       ),
                       Icon(Icons.wb_sunny_outlined,
-                          size: MediaQuery.of(context).size.height * 0.12,
+                          size: MediaQuery.of(context).size.height * 0.15,
                           color: fontcolor),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       Text(
-                        "Cloudy",
+                        "${snapshot.data[0].weather}",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.03,
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
                             color: fontcolor),
                       ),
                       Text(
                         "${snapshot.data[0].name}",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.04,
+                            fontSize: MediaQuery.of(context).size.width * 0.05,
                             color: fontcolor),
                       ),
                       Text(
