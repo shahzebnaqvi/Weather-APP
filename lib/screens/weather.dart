@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp/services/home_service.dart';
 
+String city = "Lahore";
 int font1 = 22;
 int font2 = 22;
 Color fontcolor = Colors.white;
 Color fontcolor1 = Colors.grey;
 
-String city = "Lahore";
 String city1 = "";
 
 class Weather extends StatefulWidget {
@@ -24,31 +24,34 @@ class _WeatherState extends State<Weather> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-          future: getuser(),
+          future: getuser(city),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return CircularProgressIndicator();
             } else {
-              return SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.all(20),
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  decoration: new BoxDecoration(
-                    color: Colors.blue[400],
-                    // color: Colors.blueGrey[200],
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        colorFilter: new ColorFilter.mode(
-                            Colors.black.withOpacity(0.4), BlendMode.dstATop),
-                        image: AssetImage("assets/images/electric.gif")),
-                  ),
+              return Container(
+                padding: EdgeInsets.all(20),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: new BoxDecoration(
+                  color: Colors.blue[400],
+                  // color: Colors.blueGrey[200],
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                      image: AssetImage("assets/images/electric.gif")),
+                ),
+                child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Expanded(
                               child: TextField(
+                            onChanged: (value) {
+                              city1 = value;
+                            },
                             onSubmitted: (value) {
                               city1 = value;
                               setState(() {
@@ -76,7 +79,7 @@ class _WeatherState extends State<Weather> {
                           InkWell(
                             onTap: () {
                               setState(() {
-                                if (city1 != "") {
+                                if (txtcity != "") {
                                   favourite.add(city1);
                                 }
                               });
@@ -182,69 +185,74 @@ class _WeatherState extends State<Weather> {
                           )
                         ],
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: favourite.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: EdgeInsets.only(
-                                        top: MediaQuery.of(context).size.width *
-                                            0.04),
-                                    padding: EdgeInsets.all(
-                                        MediaQuery.of(context).size.width *
-                                            0.04),
-                                    decoration: BoxDecoration(
-                                        color: Colors.blue[500],
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                            bottomLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 5,
-                                            blurRadius: 7,
-                                            offset: Offset(0,
-                                                3), // changes position of shadow
-                                          ),
-                                        ]),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          "Islamabad",
-                                          style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.04,
-                                              color: fontcolor),
-                                        ),
-                                        Icon(Icons.wb_sunny_outlined,
-                                            size: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.08,
-                                            color: fontcolor),
-                                        Text(
-                                          "20°",
-                                          style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.08,
-                                              color: fontcolor),
-                                        ),
-                                      ],
+                      Container(
+                        alignment: Alignment.center,
+                        height: MediaQuery.of(context).size.height * 0.23,
+                        child: ListView.builder(
+                            physics: ClampingScrollPhysics(),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: favourite.length,
+                            // itemCount: 39,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.width *
+                                        0.04,
+                                    right: MediaQuery.of(context).size.width *
+                                        0.04),
+                                padding: EdgeInsets.all(
+                                    MediaQuery.of(context).size.width * 0.04),
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[500],
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ]),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Islamabad",
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.04,
+                                          color: fontcolor),
                                     ),
-                                  );
-                                }),
-                          ),
-                        ],
+                                    Icon(Icons.wb_sunny_outlined,
+                                        size:
+                                            MediaQuery.of(context).size.height *
+                                                0.08,
+                                        color: fontcolor),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    ),
+                                    Text(
+                                      "20°",
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.08,
+                                          color: fontcolor),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }),
                       ),
                     ],
                   ),

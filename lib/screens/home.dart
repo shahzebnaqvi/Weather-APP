@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: getuser(),
+        future: getuser(city),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
             return CircularProgressIndicator();
