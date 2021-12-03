@@ -9,6 +9,13 @@ Color fontcolor1 = Colors.grey;
 
 String city1 = "";
 
+checkweather(a) {
+  if (a == 'smoke') {
+  } else if (a == 'Clear') {
+  } else if (a == 'Cloud') {
+  } else {}
+}
+
 class Weather extends StatefulWidget {
   const Weather({Key? key}) : super(key: key);
 
@@ -195,63 +202,83 @@ class _WeatherState extends State<Weather> {
                             itemCount: favourite.length,
                             // itemCount: 39,
                             itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.only(
-                                    top: MediaQuery.of(context).size.width *
-                                        0.04,
-                                    right: MediaQuery.of(context).size.width *
-                                        0.04),
-                                padding: EdgeInsets.all(
-                                    MediaQuery.of(context).size.width * 0.04),
-                                decoration: BoxDecoration(
-                                    color: Colors.blue[500],
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 5,
-                                        blurRadius: 7,
-                                        offset: Offset(
-                                            0, 3), // changes position of shadow
-                                      ),
-                                    ]),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Islamabad",
-                                      style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.04,
-                                          color: fontcolor),
-                                    ),
-                                    Icon(Icons.wb_sunny_outlined,
-                                        size:
-                                            MediaQuery.of(context).size.height *
-                                                0.08,
-                                        color: fontcolor),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.01,
-                                    ),
-                                    Text(
-                                      "20°",
-                                      style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.08,
-                                          color: fontcolor),
-                                    ),
-                                  ],
-                                ),
-                              );
+                              return FutureBuilder(
+                                  future: getuser(favourite[index]),
+                                  builder: (context, AsyncSnapshot snapshot) {
+                                    if (snapshot.data == null) {
+                                      // return CircularProgressIndicator();
+                                      return Container();
+                                    } else {
+                                      return Container(
+                                        margin: EdgeInsets.only(
+                                            top: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.04,
+                                            right: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.04),
+                                        padding: EdgeInsets.all(
+                                            MediaQuery.of(context).size.width *
+                                                0.04),
+                                        decoration: BoxDecoration(
+                                            color: Colors.blue[500],
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                topRight: Radius.circular(10),
+                                                bottomLeft: Radius.circular(10),
+                                                bottomRight:
+                                                    Radius.circular(10)),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 5,
+                                                blurRadius: 7,
+                                                offset: Offset(0,
+                                                    3), // changes position of shadow
+                                              ),
+                                            ]),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "${snapshot.data[0].name}",
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.04,
+                                                  color: fontcolor),
+                                            ),
+                                            Icon(Icons.wb_sunny_outlined,
+                                                size: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.08,
+                                                color: fontcolor),
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.01,
+                                            ),
+                                            Text(
+                                              "${(snapshot.data[0].temp - 273).toStringAsFixed(0)}°",
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.08,
+                                                  color: fontcolor),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    }
+                                  });
                             }),
                       ),
                     ],
