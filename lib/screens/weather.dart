@@ -41,7 +41,7 @@ class _WeatherState extends State<Weather> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 decoration: new BoxDecoration(
-                  color: Colors.blue[400],
+                  color: Colors.black,
                   // color: Colors.blueGrey[200],
                   image: DecorationImage(
                       fit: BoxFit.cover,
@@ -97,12 +97,15 @@ class _WeatherState extends State<Weather> {
                           )
                         ],
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.13,
+                          bottom: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        child: Icon(Icons.wb_sunny_outlined,
+                            size: MediaQuery.of(context).size.height * 0.15,
+                            color: fontcolor),
                       ),
-                      Icon(Icons.wb_sunny_outlined,
-                          size: MediaQuery.of(context).size.height * 0.15,
-                          color: fontcolor),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
@@ -193,6 +196,9 @@ class _WeatherState extends State<Weather> {
                         ],
                       ),
                       Container(
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.03,
+                        ),
                         alignment: Alignment.center,
                         height: MediaQuery.of(context).size.height * 0.23,
                         child: ListView.builder(
@@ -223,7 +229,7 @@ class _WeatherState extends State<Weather> {
                                             MediaQuery.of(context).size.width *
                                                 0.04),
                                         decoration: BoxDecoration(
-                                            color: Colors.blue[500],
+                                            color: Colors.black87,
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(10),
                                                 topRight: Radius.circular(10),
@@ -233,7 +239,7 @@ class _WeatherState extends State<Weather> {
                                             boxShadow: [
                                               BoxShadow(
                                                 color: Colors.grey
-                                                    .withOpacity(0.5),
+                                                    .withOpacity(0.2),
                                                 spreadRadius: 5,
                                                 blurRadius: 7,
                                                 offset: Offset(0,
