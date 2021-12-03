@@ -9,39 +9,6 @@ Color fontcolor1 = Colors.grey;
 String backgif = "assets/images/night.gif";
 String city1 = "";
 
-Icon weathericon = Icon(Icons.wb_sunny_outlined, color: fontcolor);
-checkweather(a, context) {
-  if (a == 'Smoke') {
-    String backgif = "assets/images/day.gif";
-    Icon weathericon = Icon(
-      Icons.add,
-      color: fontcolor,
-      size: MediaQuery.of(context).size.height * 0.15,
-    );
-  } else if (a == 'Clear') {
-    String backgif = "assets/images/dayg.gif";
-    Icon weathericon = Icon(
-      Icons.add,
-      color: fontcolor,
-      size: MediaQuery.of(context).size.height * 0.15,
-    );
-  } else if (a == 'Clouds') {
-    String backgif = "assets/images/night.gif";
-    Icon weathericon = Icon(
-      Icons.add,
-      color: fontcolor,
-      size: MediaQuery.of(context).size.height * 0.15,
-    );
-  } else {
-    String backgif = "assets/images/electric.gif";
-    Icon weathericon = Icon(
-      Icons.add,
-      color: fontcolor,
-      size: MediaQuery.of(context).size.height * 0.15,
-    );
-  }
-}
-
 class Weather extends StatefulWidget {
   const Weather({Key? key}) : super(key: key);
 
@@ -62,6 +29,44 @@ class _WeatherState extends State<Weather> {
             if (snapshot.data == null) {
               return CircularProgressIndicator();
             } else {
+              Icon weathericon = Icon(
+                Icons.wb_sunny_outlined,
+                color: fontcolor,
+                size: MediaQuery.of(context).size.height * 0.15,
+              );
+              String a = snapshot.data[0].weather;
+              print("aasassa");
+              print(a);
+              if (a == 'Smoke') {
+                String backgif = "assets/images/day.gif";
+                Icon weathericon = Icon(
+                  Icons.add,
+                  color: fontcolor,
+                  size: MediaQuery.of(context).size.height * 0.15,
+                );
+              } else if (a == 'Clear') {
+                String backgif = "assets/images/dayg.gif";
+                Icon weathericon = Icon(
+                  Icons.add,
+                  color: fontcolor,
+                  size: MediaQuery.of(context).size.height * 0.15,
+                );
+              } else if (a == 'Clouds') {
+                String backgif = "assets/images/night.gif";
+                Icon weathericon = Icon(
+                  Icons.add,
+                  color: fontcolor,
+                  size: MediaQuery.of(context).size.height * 0.15,
+                );
+              } else {
+                String backgif = "assets/images/electric.gif";
+                Icon weathericon = Icon(
+                  Icons.add,
+                  color: fontcolor,
+                  size: MediaQuery.of(context).size.height * 0.15,
+                );
+              }
+
               return Container(
                 padding: EdgeInsets.all(20),
                 width: MediaQuery.of(context).size.width,
@@ -94,6 +99,10 @@ class _WeatherState extends State<Weather> {
                             ),
                             onChanged: (value) {
                               city1 = value;
+                              setState(() {
+                                // checkweather(
+                                //     "${snapshot.data[0].weather}", context);
+                              });
                             },
                             onSubmitted: (value) {
                               city1 = value;
@@ -101,8 +110,8 @@ class _WeatherState extends State<Weather> {
                                 if (city1 != "") {
                                   city = city1;
                                 }
-                                checkweather(
-                                    "${snapshot.data[0].weather}", context);
+                                // checkweather(
+                                //     "${snapshot.data[0].weather}", context);
                               });
                               txtcity.clear();
                             },
@@ -235,7 +244,7 @@ class _WeatherState extends State<Weather> {
                         margin: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.03,
                         ),
-                        alignment: Alignment.center,
+                        alignment: Alignment.topLeft,
                         height: MediaQuery.of(context).size.height * 0.23,
                         child: ListView.builder(
                             physics: ClampingScrollPhysics(),
