@@ -17,6 +17,7 @@ class Weather extends StatefulWidget {
 }
 
 List favourite = [];
+
 TextEditingController txtcity = TextEditingController();
 
 class _WeatherState extends State<Weather> {
@@ -30,13 +31,13 @@ class _WeatherState extends State<Weather> {
               return CircularProgressIndicator();
             } else {
               Icon weathericon = Icon(
-                Icons.night_shelter,
+                Icons.mode_night_outlined,
                 color: fontcolor,
                 size: MediaQuery.of(context).size.height * 0.15,
               );
+
               String a = snapshot.data[0].weather;
-              print("aasassa");
-              print(a);
+
               if (a == 'Smoke') {
                 backgif = "assets/images/day.gif";
                 weathericon = Icon(
@@ -54,7 +55,7 @@ class _WeatherState extends State<Weather> {
               } else if (a == 'Clouds') {
                 backgif = "assets/images/dayg.gif";
                 weathericon = Icon(
-                  Icons.mode_night_outlined,
+                  Icons.wb_sunny,
                   color: fontcolor,
                   size: MediaQuery.of(context).size.height * 0.15,
                 );
@@ -303,7 +304,7 @@ class _WeatherState extends State<Weather> {
                                                           0.04,
                                                   color: fontcolor),
                                             ),
-                                            Icon(Icons.wb_sunny_outlined,
+                                            Icon(Icons.mode_night_outlined,
                                                 size: MediaQuery.of(context)
                                                         .size
                                                         .height *
