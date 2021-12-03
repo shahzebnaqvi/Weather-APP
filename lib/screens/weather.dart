@@ -30,7 +30,7 @@ class _WeatherState extends State<Weather> {
               return CircularProgressIndicator();
             } else {
               Icon weathericon = Icon(
-                Icons.wb_sunny_outlined,
+                Icons.night_shelter,
                 color: fontcolor,
                 size: MediaQuery.of(context).size.height * 0.15,
               );
@@ -38,30 +38,30 @@ class _WeatherState extends State<Weather> {
               print("aasassa");
               print(a);
               if (a == 'Smoke') {
-                String backgif = "assets/images/day.gif";
-                Icon weathericon = Icon(
-                  Icons.add,
+                backgif = "assets/images/day.gif";
+                weathericon = Icon(
+                  Icons.mode_night_outlined,
                   color: fontcolor,
                   size: MediaQuery.of(context).size.height * 0.15,
                 );
               } else if (a == 'Clear') {
-                String backgif = "assets/images/dayg.gif";
-                Icon weathericon = Icon(
-                  Icons.add,
+                backgif = "assets/images/night.gif";
+                weathericon = Icon(
+                  Icons.mode_night_outlined,
                   color: fontcolor,
                   size: MediaQuery.of(context).size.height * 0.15,
                 );
               } else if (a == 'Clouds') {
-                String backgif = "assets/images/night.gif";
-                Icon weathericon = Icon(
-                  Icons.add,
+                backgif = "assets/images/dayg.gif";
+                weathericon = Icon(
+                  Icons.mode_night_outlined,
                   color: fontcolor,
                   size: MediaQuery.of(context).size.height * 0.15,
                 );
               } else {
-                String backgif = "assets/images/electric.gif";
-                Icon weathericon = Icon(
-                  Icons.add,
+                backgif = "assets/images/electric.gif";
+                weathericon = Icon(
+                  Icons.mode_night_outlined,
                   color: fontcolor,
                   size: MediaQuery.of(context).size.height * 0.15,
                 );
