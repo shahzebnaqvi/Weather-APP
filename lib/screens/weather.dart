@@ -6,14 +6,40 @@ int font1 = 22;
 int font2 = 22;
 Color fontcolor = Colors.white;
 Color fontcolor1 = Colors.grey;
-
+String backgif = "assets/images/night.gif";
 String city1 = "";
 
-checkweather(a) {
-  if (a == 'smoke') {
+Icon weathericon = Icon(Icons.wb_sunny_outlined, color: fontcolor);
+checkweather(a, context) {
+  if (a == 'Smoke') {
+    String backgif = "assets/images/day.gif";
+    Icon weathericon = Icon(
+      Icons.add,
+      color: fontcolor,
+      size: MediaQuery.of(context).size.height * 0.15,
+    );
   } else if (a == 'Clear') {
-  } else if (a == 'Cloud') {
-  } else {}
+    String backgif = "assets/images/dayg.gif";
+    Icon weathericon = Icon(
+      Icons.add,
+      color: fontcolor,
+      size: MediaQuery.of(context).size.height * 0.15,
+    );
+  } else if (a == 'Clouds') {
+    String backgif = "assets/images/night.gif";
+    Icon weathericon = Icon(
+      Icons.add,
+      color: fontcolor,
+      size: MediaQuery.of(context).size.height * 0.15,
+    );
+  } else {
+    String backgif = "assets/images/electric.gif";
+    Icon weathericon = Icon(
+      Icons.add,
+      color: fontcolor,
+      size: MediaQuery.of(context).size.height * 0.15,
+    );
+  }
 }
 
 class Weather extends StatefulWidget {
@@ -47,7 +73,7 @@ class _WeatherState extends State<Weather> {
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.4), BlendMode.dstATop),
-                      image: AssetImage("assets/images/electric.gif")),
+                      image: AssetImage(backgif)),
                 ),
                 child: SingleChildScrollView(
                   child: Column(
@@ -56,6 +82,16 @@ class _WeatherState extends State<Weather> {
                         children: [
                           Expanded(
                               child: TextField(
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              hintText: "Enter City Name",
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                              ),
+                              border: InputBorder.none,
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white)),
+                            ),
                             onChanged: (value) {
                               city1 = value;
                             },
@@ -65,6 +101,8 @@ class _WeatherState extends State<Weather> {
                                 if (city1 != "") {
                                   city = city1;
                                 }
+                                checkweather(
+                                    "${snapshot.data[0].weather}", context);
                               });
                               txtcity.clear();
                             },
@@ -102,29 +140,27 @@ class _WeatherState extends State<Weather> {
                           top: MediaQuery.of(context).size.height * 0.13,
                           bottom: MediaQuery.of(context).size.height * 0.02,
                         ),
-                        child: Icon(Icons.wb_sunny_outlined,
-                            size: MediaQuery.of(context).size.height * 0.15,
-                            color: fontcolor),
+                        child: weathericon,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       Text(
-                        "${snapshot.data[0].weather}",
-                        style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.04,
-                            color: fontcolor),
-                      ),
-                      Text(
                         "${snapshot.data[0].name}",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.05,
+                            fontSize: MediaQuery.of(context).size.width * 0.08,
                             color: fontcolor),
                       ),
                       Text(
                         "${(snapshot.data[0].temp - 273).toStringAsFixed(0)}°",
                         style: TextStyle(
                             fontSize: MediaQuery.of(context).size.width * 0.18,
+                            color: fontcolor),
+                      ),
+                      Text(
+                        "${snapshot.data[0].weather}",
+                        style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
                             color: fontcolor),
                       ),
                       SizedBox(
