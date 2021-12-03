@@ -14,13 +14,17 @@ getuser(String city) async {
   print(jsonData);
   List<HomeModel> users = [];
   HomeModel user = HomeModel(
-      userId: jsonData['main']['humidity'],
-      id: jsonData['main']['humidity'],
-      title: jsonData['main']['humidity'],
-      temp: jsonData['main']['temp'],
-      timezone: jsonData['timezone'],
-      name: jsonData['name'],
-      weather: jsonData['weather'][0]['main']);
+    userId: jsonData['main']['humidity'],
+    id: jsonData['main']['humidity'],
+    title: jsonData['main']['humidity'],
+    temp: jsonData['main']['temp'],
+    timezone: jsonData['timezone'],
+    name: jsonData['name'],
+    weather: jsonData['weather'][0]['main'],
+    pressure: jsonData['main']['pressure'],
+    humidity: jsonData['main']['humidity'],
+    feels_like: jsonData['main']['feels_like'],
+  );
   users.add(user);
 
   return users;

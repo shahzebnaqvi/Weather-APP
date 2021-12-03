@@ -126,7 +126,7 @@ class _WeatherState extends State<Weather> {
                           Column(
                             children: [
                               Text(
-                                "222",
+                                "${snapshot.data[0].pressure}",
                                 style: TextStyle(
                                     fontSize:
                                         MediaQuery.of(context).size.width *
@@ -146,7 +146,7 @@ class _WeatherState extends State<Weather> {
                           Column(
                             children: [
                               Text(
-                                "222",
+                                "${snapshot.data[0].humidity}",
                                 style: TextStyle(
                                     fontSize:
                                         MediaQuery.of(context).size.width *
@@ -166,7 +166,7 @@ class _WeatherState extends State<Weather> {
                           Column(
                             children: [
                               Text(
-                                "222",
+                                "${(snapshot.data[0].feels_like - 273).toStringAsFixed(0)}°",
                                 style: TextStyle(
                                     fontSize:
                                         MediaQuery.of(context).size.width *
